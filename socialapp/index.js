@@ -3,7 +3,7 @@ const format = require("date-format");
 
 const app = express();
 
-const PORT = 4000 || process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
 	res.status(200).send("<h1>Hello from Ash</h1>");
