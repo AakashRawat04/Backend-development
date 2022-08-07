@@ -218,6 +218,9 @@ paths:
       tags:
         - images 
       summary: uploading course image.
+      parameters:
+        - in: header
+          name: auth 
       requestBody:
         content:
           multipart/form-data:
