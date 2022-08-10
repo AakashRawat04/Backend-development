@@ -46,7 +46,9 @@ app.post("/register", async (req, res) => {
 		);
 		user.token = token;
 		//update or not in DB
-		//TODO: handle password situation
+
+		//TODO: handle password situation -> completed
+		user.password = undefined;
 
 		res.status(201).json(user);
 	} catch (error) {
