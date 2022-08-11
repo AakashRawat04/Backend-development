@@ -89,4 +89,9 @@ app.post("/login", async (req, res) => {
 		console.log(error);
 	}
 });
+
+app.get("/dashboard", (req, res) => {
+	res.send("welcome to secret information");
+});
+
 module.exports = app;
