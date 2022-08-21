@@ -50,4 +50,9 @@ userSchema.pre("save", async function (next) {
 	this.password = await bcrypt.hash(this.password, 10);
 });
 
+// validate the password with passed on user password
+userSchema.methods.isValidatedPassword = async function (userSendPassword) {
+	return await bcrypt.compare(userSendPassword, this.password);
+};
+
 module.exports = mongoose.model("User", userSchema);
