@@ -6,6 +6,7 @@ const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary");
 const mailHelper = require("../utils/emailHelper");
 const crypto = require("crypto");
+const { join } = require("path");
 
 exports.signup = BigPromise(async (req, res, next) => {
 	// let result;
@@ -19,6 +20,7 @@ exports.signup = BigPromise(async (req, res, next) => {
 		return next(new CustomError("Name, Email and password are required", 400));
 	}
 
+	console.log('all fields given')
 	let file = req.files.photo;
 	const result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
 		folder: "users",
@@ -35,7 +37,7 @@ exports.signup = BigPromise(async (req, res, next) => {
 			secure_url: result.secure_url,
 		},
 	});
-
+	
 	cookieToken(user, res);
 });
 
@@ -241,3 +243,13 @@ exports.adminAllUser = BigPromise(async (req, res, next) => {
 		users,
 	});
 });
+
+exports.manageAllUser = BigPromise(async (req, res, next) => {
+	const users = await User.find({role: 'user'});
+
+	res.status(200).json({
+		success: true,
+		users,
+	});
+});
+
