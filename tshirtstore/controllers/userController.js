@@ -249,11 +249,29 @@ exports.admingetOneUser = BigPromise(async (req, res, next) => {
 	if (!user) {
 		next(new CustomError("No user found", 400))
 	}
-	
+
 	res.status(200).json({
 		success:true,
 		user
 	})
+});
+
+exports.adminUpdateOneUserDetails = BigPromise(async (req, res, next) => {
+	const newData = {
+		name: req.body.name,
+		email: req.body.email,
+		role: req.body.role
+	};
+
+	const user = await User.findByIdAndUpdate(req.params.id, newData, {
+		new: true,
+		runValidators: true,
+		useFindAndModified: false,
+	});
+
+	res.status(200).json({
+		success: true,
+	});
 });
 
 exports.manageAllUser = BigPromise(async (req, res, next) => {
