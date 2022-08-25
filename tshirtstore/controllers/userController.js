@@ -6,7 +6,6 @@ const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary");
 const mailHelper = require("../utils/emailHelper");
 const crypto = require("crypto");
-const { join } = require("path");
 
 exports.signup = BigPromise(async (req, res, next) => {
 	// let result;
@@ -242,6 +241,19 @@ exports.adminAllUser = BigPromise(async (req, res, next) => {
 		success: true,
 		users,
 	});
+});
+
+exports.admingetOneUser = BigPromise(async (req, res, next) => {
+	const user = await User.findById(req.params.id)
+
+	if (!user) {
+		next(new CustomError("No user found", 400))
+	}
+	
+	res.status(200).json({
+		success:true,
+		user
+	})
 });
 
 exports.manageAllUser = BigPromise(async (req, res, next) => {
