@@ -165,3 +165,12 @@ exports.passwordReset = BigPromise(async (req, res, next) => {
 
 	cookieToken(user, res);
 });
+
+exports.getLoggedInUserDetail = BigPromise(async (req, res, next) => {
+	const user = await User.findById(req.user.id);
+
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});
