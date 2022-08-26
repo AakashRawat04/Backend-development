@@ -8,7 +8,6 @@ const mailHelper = require("../utils/emailHelper");
 const crypto = require("crypto");
 
 exports.signup = BigPromise(async (req, res, next) => {
-	// let result;
 	if (!req.files) {
 		return next(new CustomError("photo is required for signup", 400));
 	}
@@ -19,7 +18,6 @@ exports.signup = BigPromise(async (req, res, next) => {
 		return next(new CustomError("Name, Email and password are required", 400));
 	}
 
-	console.log("all fields given");
 	let file = req.files.photo;
 	const result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
 		folder: "users",
@@ -36,7 +34,6 @@ exports.signup = BigPromise(async (req, res, next) => {
 			secure_url: result.secure_url,
 		},
 	});
-
 	cookieToken(user, res);
 });
 
