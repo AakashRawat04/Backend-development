@@ -85,7 +85,7 @@ exports.adminGetAllProduct = BigPromise(async (req, res, next) => {
 });
 
 exports.adminUpdateOneProduct = BigPromise(async (req, res, next) => {
-	const product = await Product.find(req.params.id);
+	let product = await Product.findById(req.params.id);
 
 	if (!product) {
 		return next(new CustomError("no product found with this id", 401));
@@ -131,7 +131,7 @@ exports.adminUpdateOneProduct = BigPromise(async (req, res, next) => {
 });
 
 exports.adminDeleteOneProduct = BigPromise(async (req, res, next) => {
-	const product = await Product.find(req.params.id);
+	const product = await Product.findById(req.params.id);
 
 	if (!product) {
 		return next(new CustomError("no product found with this id", 401));
