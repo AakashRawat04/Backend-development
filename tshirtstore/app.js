@@ -34,6 +34,7 @@ app.use(morgan("tiny"));
 const home = require("./routes/home");
 const user = require("./routes/user");
 const product = require("./routes/product");
+const payment = require("./routes/payment");
 
 //router middleware
 app.use("/api/v1", home);
