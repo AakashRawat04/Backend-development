@@ -47,6 +47,12 @@ app.use("/api/v1", order);
 app.get("/signuptest", (req, res) => {
 	res.render("signuptest");
 });
+app.get("/", (req, res) => {
+	res.status(200).json({
+		success: true,
+		message: "welcome to home page!",
+	});
+});
 
 //export app js
 module.exports = app;
