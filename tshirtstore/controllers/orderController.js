@@ -6,7 +6,7 @@ const BigPromise = require("../middlewares/bigPromise");
 exports.createOrder = BigPromise(async (req, res, next) => {
 	const {
 		shippingInfo,
-		orderItem,
+		orderItems,
 		paymentInfo,
 		taxAmount,
 		shippingAmount,
@@ -15,7 +15,7 @@ exports.createOrder = BigPromise(async (req, res, next) => {
 
 	const order = await Order.create({
 		shippingInfo,
-		orderItem,
+		orderItems,
 		paymentInfo,
 		taxAmount,
 		shippingAmount,
