@@ -14,7 +14,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/passport", () =>
 
 app.use(
 	cookieSession({
-		maxAge: 3 * 24 * 60 * 60 * 100,
+		maxAge: 3 * 24 * 60 * 60 * 1000,
 		keys: ["thisislcotokenkey"],
 	})
 );
