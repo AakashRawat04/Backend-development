@@ -5,9 +5,9 @@ const app = express();
 
 cloudinary.config({
 	// cloud_name: process.env.CLOUD_NAME
-	cloud_name: "da0ydzzy0",
-	api_key: "348294186687289",
-	api_secret: "6-lN7NnmVtI07qWQosi5h1V580M",
+	cloud_name: "",
+	api_key: "",
+	api_secret: "",
 });
 
 app.set("view engine", "ejs");
